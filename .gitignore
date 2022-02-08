@@ -1,0 +1,18 @@
+# Project exclude paths
+/plugins/woocommerce/packages/woocommerce-blocks/assets/js/types/type-defs/cart.js
+/plugins/woocommerce/packages/woocommerce-blocks/assets/js/types/type-defs/contexts.js
+/plugins/woocommerce/packages/woocommerce-blocks/assets/js/types/type-defs/hooks.js
+/plugins/woocommerce/packages/woocommerce-blocks/assets/js/types/type-defs/shipping.js
+/plugins/woocommerce/
+/plugins/ajax-thumbnail-rebuild/
+/plugins/import-users-from-csv-with-meta/
+/plugins/show-current-template/
+/plugins/users-customers-import-export-for-wp-woocommerce/
+/uploads/
+/themes/clean-template/
+/themes/luster/
+/themes/twentynineteen/
+/themes/twentytwenty/
+/themes/twentytwentyone/
+/themes/twentytwentyone-child/
+/themes/twentytwentytwo/

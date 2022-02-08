@@ -114,19 +114,36 @@ add_filter('woocommerce_add_to_cart_fragments', function ($fragments) {
 });
 
 add_filter('woocommerce_checkout_fields', function ($checkout_fields) {
-		$checkout_fields['billing']['billing_phone']['placeholder'] = 'Телефон';
-		$checkout_fields['billing']['billing_first_name']['placeholder'] = 'Как вас зовут?';
-		$checkout_fields['billing']['billing_last_name']['placeholder'] = 'Ваша фамилия';
-		$checkout_fields['billing']['billing_email']['placeholder'] = 'E-mail';
-		$checkout_fields['billing']['billing_address_1']['placeholder'] = 'Адрес';
-		$checkout_fields['billing']['billing_city']['placeholder'] = 'Город';
-		$checkout_fields['billing']['billing_postcode']['placeholder'] = 'Индекс';
-		$checkout_fields['billing']['billing_country']['placeholder'] = 'Страна';
-		$checkout_fields['billing']['billing_state']['placeholder'] = 'Регион';
+    $checkout_fields['billing']['billing_phone']['placeholder'] = 'Телефон';
+    $checkout_fields['billing']['billing_first_name']['placeholder'] = 'Как вас зовут?';
+    $checkout_fields['billing']['billing_last_name']['placeholder'] = 'Ваша фамилия';
+    $checkout_fields['billing']['billing_email']['placeholder'] = 'E-mail';
+    $checkout_fields['billing']['billing_address_1']['placeholder'] = 'Адрес';
+    $checkout_fields['billing']['billing_city']['placeholder'] = 'Город';
+    $checkout_fields['billing']['billing_postcode']['placeholder'] = 'Индекс';
+    $checkout_fields['billing']['billing_country']['placeholder'] = 'Страна';
+    $checkout_fields['billing']['billing_state']['placeholder'] = 'Регион';
     return $checkout_fields;
 });
 
 // заменяем стили у кнопки через хук
-add_filter('woocommerce_order_button_html', function ($html){
-	return str_replace('button alt', 'btn btn-full btn-black mt-26', $html);
+add_filter('woocommerce_order_button_html', function ($html) {
+    return str_replace('button alt', 'btn btn-full btn-black mt-26', $html);
 });
+// выводить телефон в Orders
+add_action( 'manage_shop_order_posts_custom_column' , 'custom_orders_list_column_content', 50, 2 );
+function custom_orders_list_column_content( $column, $post_id ) {
+    if ( $column == 'order_number' )
+    {
+        global $the_order;
+
+        if( $phone = $the_order->get_billing_phone() ){
+            $phone_wp_dashicon = '<span class="dashicons dashicons-phone"></span> ';
+            echo '<br><a href="tel:'.$phone.'">' . $phone_wp_dashicon . $phone.'</a></strong>';
+        }
+
+        if( $email = $the_order->get_billing_email() ){
+            echo '<br><strong><a href="mailto:'.$email.'">' . $email . '</a></strong>';
+        }
+    }
+}

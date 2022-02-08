@@ -24,7 +24,7 @@ if (empty($product) || !$product->is_visible()) {
     return;
 }
 
-$product_published = $product->get_date_created();// $product_published->date
+$product_published = $product->get_date_created()?$product->get_date_created():'';// $product_published->date
 ?>
 
 <!-- Start Single Product -->
@@ -49,7 +49,7 @@ wc_product_class($class, $product); ?>>
               echo '<span class="product-badge sale">' . esc_html__('Sale!', 'woocommerce') . '</span>';
           } elseif ($product->is_featured()) {
               echo '<span class="product-badge hot">' . esc_html__('Hot!', 'woocommerce') . '</span>';
-          } elseif (strtotime($product_published->date) < (time() - 86400 * 5)) {
+          } elseif (strtotime($product_published) < (time() - 86400 * 5)) {
               echo '<span class="product-badge">' . esc_html__('New!', 'woocommerce') . '</span>';
           }
           ?>

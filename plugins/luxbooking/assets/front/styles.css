@@ -1,0 +1,24 @@
+.booking-rooms {
+	padding: 40px;
+	border: 1px solid #e5e5e5;
+}
+
+.booking-rooms h1{
+	font-size: 24px;
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+.wrapper{
+	max-width: 1200px;
+	margin: 0 auto;
+	width: 100%;
+}
+
+.booking-rooms select{
+	padding: 10px;
+	margin: 10px;
+}
+span .location, span .type{
+	display: block;
+}
